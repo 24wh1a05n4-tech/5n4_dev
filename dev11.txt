@@ -1,0 +1,52 @@
+Step 1:create the JavaScript Project:
+cd ~ mkdir karate-js-demo
+cd karate-js-demo
+npm init -y
+npm install express
+Step 2:create app.js: nano app.js
+const express = require('express');
+const app = express();
+app.get('/calculate', (req, res) => {
+let a = Number(req.query.a);
+let b = Number(req.query.b);
+let op = req.query.op;
+let result;
+if (op === 'add') result = a + b;
+else if (op === 'sub') result = a - b;
+else if (op === 'mul') result = a * b;
+else if (op === 'div') result = a / b;
+else return res.status(400).json({ error: 'Invalid operation' });
+res.json({ result: result });
+});
+app.listen(3000, () => {
+console.log('Server running on http://localhost:3000');
+});
+Step 3: Run and check the JavaScript program in terminal 1: Step 4:curl "http://localhost:3000/calculate?a=10&b=5&op=add" step 5: Create the Karate Project Strcuture(in terminal 2): cd ~/karate-js-demo
+mkdir -p src/test/java/calculator
+mkdir -p src/test/resources/calculator
+Step 6:create the Karate Feature file
+nano src/test/resources/calculator/calculator.feature
+step 7:create the java Test Runner: nano src/test/java/calculator/CalculatorTest.java
+step 8:Make sure terminal 1 is running.
+
+
+12:
+
+12.AIM:Develop test cases for the above containerized application using Spring boot testing. Program : Step 1: Create and configure the Spring Boot application
+Create a Spring Boot project with Maven and add spring-boot-starter-web and spring-boot-starter-test dependencies. Create a controller that displays the required message: @GetMapping("/")
+public String hello() {
+return "HellO Spring Boot from 24WH1A05AE-HANSIKA.R";
+}
+Configure the application to run on port 8090 using application.properties. Step 2:create Spring Boot test cases
+Create DemoApplicationTests.java inside src/test/java/com/example/demo/. Use @SpringBootTest and JUnit test
+methods to test application loading and the REST endpoints. Make sure the expected output in the test exactly
+matches the controller response. Step 3:Exceute the test cases
+Run the following command from the project directory: mvn test
+Verify that all test cases pass and the terminal displays: Tests run: 3, Failures: 0, Errors: 0
+BUILD SUCCESS
+Step 4:Containerize the application
+Create a Dockerfile, build the Spring Boot JAR using Maven, and create a Docker image: mvn clean package
+docker build -t spring-test-app:1.0 . Run the application in a docker container: docker run -d -p 8090:8090 --name spring-test-container spring-test- app:1.0
+Step 5:Verify the application output
+Check the running container using: docker ps
+Open Chrome and enter: http://localhost:8090/

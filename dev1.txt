@@ -1,0 +1,395 @@
+Experiment 1:
+
+1. Java JDK 17 (java -version / javac -version)
+
+2. Visual Studio Code
+[Ctrl + Shift + P
+Spring Initializr: Create a Maven Project
+Language : Java
+
+Spring Boot : Latest Stable Version
+
+Project : Maven
+
+Group : com.example
+
+Artifact : demo
+
+Package : com.example.demo
+
+Packaging : Jar
+
+Java Version : 17
+Dependency--Spring Web
+]
+3. Extension Pack for Java (Microsoft)
+4. Spring Boot Extension Pack (VMware)[VS Code- Ctrl + Shift + x - instal- Spring Boot Extension Pack (by VMware)]
+
+DemoApplication.java
+
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DemoApplication {
+
+public static void main(String[] args) {
+SpringApplication.run(DemoApplication.class, args);
+}
+
+}
+
+2. Registration.java
+
+package com.example.demo;
+
+public class Registration {
+    private int id;
+    private String name;
+    private String email;
+    private String eventName;
+
+    public Registration() {
+    }
+
+    public Registration(int id, String name, String email, String eventName) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.eventName = eventName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+}
+
+3. RegistrationController.java
+
+package com.example.demo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/registrations")
+public class RegistrationController {
+
+    private final RegistrationService registrationService;
+
+    public RegistrationController(RegistrationService registrationService) {
+        this.registrationService = registrationService;
+    }
+
+    @GetMapping
+    public List<Registration> getAllRegistrations() {
+        return registrationService.getAllRegistrations();
+    }
+
+    @PostMapping
+    public Registration addRegistration(@RequestBody Registration registration) {
+        return registrationService.addRegistration(registration);
+    }
+}
+
+4. RegistrationService.java
+
+package com.example.demo;
+
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class RegistrationService {
+    private final List<Registration> registrations = new ArrayList<>();
+
+    public List<Registration> getAllRegistrations() {
+        return registrations;
+    }
+
+    public Registration addRegistration(Registration registration) {
+        registrations.add(registration);
+        return registration;
+    }
+}
+ 
+
+
+.\mvnw.cmd clean package
+.\mvnw.cmd spring-boot:run
+
+
+
+
+
+
+2::
+
+1. git --version
+C:\Users\Student\Documents\24WH_N4>git --version
+git version 2.49.0.windows.1
+
+C:\Users\Student\Documents\24WH_N4>
+2. git config --list
+C:\Users\Student\Documents\24WH_N4>git config --list
+user.name=John Doe
+user.email=johndoe@gmail.com
+core.editor=code --wait
+core.autocrlf=true
+init.defaultbranch=main
+credential.helper=manager
+
+C:\Users\Student\Documents\24WH_N4>
+3. git init
+C:\Users\Student\Documents\24WH_N4>git init
+Initialized empty Git repository in C:/Users/Student/Documents/24WH_N4/.git/
+
+C:\Users\Student\Documents\24WH_N4>
+4. git status
+C:\Users\Student\Documents\24WH_N4>git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        index.html
+        style.css
+        script.js
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+C:\Users\Student\Documents\24WH_N4>
+5. git init (again)
+C:\Users\Student\Documents\24WH_N4>git init
+Reinitialized existing Git repository in C:/Users/Student/Documents/24WH_N4/.git/
+
+C:\Users\Student\Documents\24WH_N4>
+6. git status
+C:\Users\Student\Documents\24WH_N4>git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        index.html
+        style.css
+        script.js
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+C:\Users\Student\Documents\24WH_N4>
+7. git add .
+C:\Users\Student\Documents\24WH_N4>git add .
+
+C:\Users\Student\Documents\24WH_N4>
+8. git commit -m "Initial commit"
+C:\Users\Student\Documents\24WH_N4>git commit -m "Initial commit"
+[main (root-commit) a1b2c3d] Initial commit
+ 3 files changed, 180 insertions(+)
+ create mode 100644 index.html
+ create mode 100644 style.css
+ create mode 100644 script.js
+
+C:\Users\Student\Documents\24WH_N4>
+9. git log
+C:\Users\Student\Documents\24WH_N4>git log
+commit a1b2c3d4e5f67890123456789abcdef12345678 (HEAD -> main)
+Author: John Doe <johndoe@gmail.com>
+Date:   Tue Jul 7 10:30:45 2026 +0530
+
+    Initial commit
+
+C:\Users\Student\Documents\24WH_N4>
+10. git diff
+C:\Users\Student\Documents\24WH_N4>git diff
+
+C:\Users\Student\Documents\24WH_N4>
+(No output because there are no changes.)
+
+11. git branch
+C:\Users\Student\Documents\24WH_N4>git branch
+* main
+
+C:\Users\Student\Documents\24WH_N4>
+12. git checkout feature
+If the branch exists
+C:\Users\Student\Documents\24WH_N4>git checkout feature
+Switched to branch 'feature'
+
+C:\Users\Student\Documents\24WH_N4>
+If it doesn't exist
+C:\Users\Student\Documents\24WH_N4>git checkout feature
+error: pathspec 'feature' did not match any file(s) known to git
+
+C:\Users\Student\Documents\24WH_N4>
+13. git switch feature
+If the branch exists
+C:\Users\Student\Documents\24WH_N4>git switch feature
+Switched to branch 'feature'
+
+C:\Users\Student\Documents\24WH_N4>
+If it doesn't exist
+C:\Users\Student\Documents\24WH_N4>git switch feature
+fatal: invalid reference: feature
+
+C:\Users\Student\Documents\24WH_N4>
+14. git merge feature
+C:\Users\Student\Documents\24WH_N4>git merge feature
+Already up to date.
+
+C:\Users\Student\Documents\24WH_N4>
+15. git clone https://github.com/username/24WH_N4.git
+C:\Users\Student\Documents>git clone https://github.com/username/24WH_N4.git
+Cloning into '24WH_N4'...
+remote: Enumerating objects: 8, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (6/6), done.
+Receiving objects: 100% (8/8), 4.02 KiB | 1.34 MiB/s, done.
+Resolving deltas: 100% (2/2), done.
+
+C:\Users\Student\Documents>
+16. git remote -v
+C:\Users\Student\Documents\24WH_N4>git remote -v
+origin  https://github.com/username/24WH_N4.git (fetch)
+origin  https://github.com/username/24WH_N4.git (push)
+
+C:\Users\Student\Documents\24WH_N4>
+17. git push -u origin main
+C:\Users\Student\Documents\24WH_N4>git push -u origin main
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (6/6), 2.34 KiB | 2.34 MiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/username/24WH_N4.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+
+C:\Users\Student\Documents\24WH_N4>
+18. git pull
+C:\Users\Student\Documents\24WH_N4>git pull
+Already up to date.
+
+C:\Users\Student\Documents\24WH_N4>
+19. git fetch
+C:\Users\Student\Documents\24WH_N4>git fetch
+remote: Enumerating objects: 2, done.
+remote: Counting objects: 100% (2/2), done.
+remote: Total 2 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (2/2), 512 bytes | 512.00 KiB/s, done.
+From https://github.com/username/24WH_N4
+ * [new branch]      feature -> origin/feature
+
+C:\Users\Student\Documents\24WH_N4>
+20. git branch -d feature
+C:\Users\Student\Documents\24WH_N4>git branch -d feature
+Deleted branch feature (was b3c4d5e).
+
+WHAT THEY DO?
+
+• git --version
+	• What it does: Checks the current version of Git installed on your computer.
+	• Analogy: Checking the model number of a tool you just bought.
+• git config --list
+	• What it does: Shows all the global settings currently configured in Git, such as your username, email, default text editor, and line ending settings.
+	• Analogy: Opening a settings menu on your phone to see your personal profile and preferences.
+
+📂 Creating and Inspecting Repositories
+
+• git init
+	• What it does: Creates a brand-new, empty Git repository (a hidden .git folder) in your current directory. If you run it again, it safely reinitializes the existing repository without losing your tracking history.
+	• Analogy: Setting up a new filing cabinet inside an empty room so you can start organizing files.
+• git status
+	• What it does: Shows the current state of your project. It lists which files are new or modified but not yet ready to be saved (untracked/unstaged), and which files are ready to be committed.
+	• Analogy: Looking at your desk to see which papers are edited but scattered, and which ones are neatly piled up waiting to be filed away.
+
+💾 Saving Changes (Committing)
+
+• git add .
+	• What it does: Prepares all new, modified, or deleted files in the current folder to be saved in the next snapshot. The dot (.) means "everything in this folder."
+	• Analogy: Putting the documents you want to save into a physical outbox before locking them in a safe.
+• git commit -m "Initial commit"
+	• What it does: Permanently saves your staged changes into the Git history with a descriptive message (-m) so you know what you changed.
+	• Analogy: Snapping a permanent photograph of your work timeline and writing a label on the back of the photo.
+• git log
+	• What it does: Displays a history of all the commits (snapshots) made in the project, showing who made them, when, and their unique ID hash codes.
+	• Analogy: Reading a diary or a changelog of everything that has ever happened to the project since it started.
+• git diff
+	• What it does: Compares your current files against the last saved version to show line-by-line differences. If nothing prints, it means you haven't changed anything since your last commit.
+	• Analogy: Holding two versions of a script up to the light to see exactly which sentences you rewrote.
+
+🌿 Managing Branches
+
+• git branch
+	• What it does: Lists all the local branches (independent lines of development) in your project. The asterisk (*) indicates which branch you are actively working on.
+	• Analogy: Checking a list of alternate realities or draft versions of a book you are writing.
+• git checkout feature / git switch feature
+	• What it does: Both commands change your active workspace to a different branch named "feature". If the branch doesn't exist, it gives an error. (git switch is a newer, cleaner command built explicitly for switching branches).
+	• Analogy: Stepping out of your main office room and walking into a side laboratory to work on an experiment.
+• git merge feature
+	• What it does: Combines the history and changes from another branch (like "feature") into your current active branch (like "main").
+	• Analogy: Pouring the ingredients from a side mixing bowl back into the main pot.
+• git branch -d feature
+	• What it does: Deletes a local branch that you no longer need, usually because its changes have already been safely merged into your main project.
+	• Analogy: Shredding a rough draft page after you’ve typed its final edits into your main manuscript.
+
+🌐 Working with Cloud Repositories (GitHub)
+
+• git clone <URL>
+	• What it does: Downloads an existing Git repository from the internet (like GitHub) onto your local computer, setting up all the history and tracking links automatically.
+	• Analogy: Photocopying an entire library shelf from a public institution and setting it up exactly the same way in your private study.
+• git remote -v
+	• What it does: Lists the web addresses (URLs) of the remote servers connected to your local project, showing where Git will send or pull data.
+	• Analogy: Checking the address book labels on a package to make sure you know exactly where it is shipping out to.
+• git push -u origin main
+	• What it does: Uploads your local commits to the remote server (origin) on the specified branch (main). The -u flag links your local branch directly to the remote branch so you can just type git push in the future.
+	• Analogy: Publishing your private local diary entries up onto your public blog website.
+• git pull
+	• What it does: Downloads new changes from the remote server and immediately merges them into your active local workspace.
+	• Analogy: Checking a shared document online, downloading any updates your coworkers made, and adding them straight onto your desktop copy.
+• git fetch
+	• What it does: Downloads the latest history and new branches from the remote server, but does not touch or modify your active files. It lets you see what others have done before you decide to merge it.
+	• Analogy: Looking at a notification feed to see that your friends uploaded new files, without downloading or opening those files yet.
+
+
+
+
